@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OS & File Management Quiz (MCQ)</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #eef2f3; padding: 20px; }
+    h1 { text-align: center; }
+    .quiz-container { background: white; padding: 20px; border-radius: 10px; max-width: 800px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+    .question { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc; }
+    button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    #result { margin-top: 20px; font-size: 22px; text-align: center; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Operating System & File Management MCQ Quiz</h1>
+  <div class="quiz-container" id="quiz"></div>
+  <button onclick="submitQuiz()">Submit Quiz</button>
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      { q: "What is an Operating System?", options: ["Hardware", "System Software", "Browser", "Programming Language"], answer: 1 },
+      { q: "Which manages CPU time?", options: ["File Manager", "Process Manager", "Device Manager", "Boot Loader"], answer: 1 },
+      { q: "Which manages RAM?", options: ["Memory Management", "CPU", "Drivers", "BIOS"], answer: 0 },
+      { q: "Which manages files?", options: ["Device Manager", "Task Manager", "File Manager", "Memory Manager"], answer: 2 },
+      { q: "What is virtual memory?", options: ["External drive", "Extra RAM created on disk", "Temporary internet memory", "Flash memory"], answer: 1 },
+      { q: "What is a device driver?", options: ["Hardware", "Software that controls devices", "OS kernel", "Monitor setting"], answer: 1 },
+      { q: "What is multitasking?", options: ["One task", "Many users", "Running many programs", "Running in safe mode"], answer: 2 },
+      { q: "A real-time OS is used in?", options: ["Games", "Robots", "Photoshop", "File systems"], answer: 1 },
+      { q: "Which is a GUI OS?", options: ["DOS", "Windows", "Linux Terminal", "PowerShell"], answer: 1 },
+      { q: "Which is a CLI?", options: ["Windows Desktop", "Linux Terminal", "Android", "iOS"], answer: 1 },
+      { q: "Command to list files in Windows?", options: ["ls", "show", "dir", "list"], answer: 2 },
+      { q: "Command to list files in Linux?", options: ["dir", "ls", "show", "run"], answer: 1 },
+      { q: "A file system organizes?", options: ["RAM", "Programs", "Files", "CPU"], answer: 2 },
+      { q: "File access method?", options: ["Sequential", "Direct", "Indexed", "All"], answer: 3 },
+      { q: "GUI stands for?", options: ["General User Input", "Graphic User Interface", "Global Unit Interface", "Generating UI"], answer: 1 },
+      { q: "WIMP includes?", options: ["Windows Icons Menus Pointer", "Wireless Input Mouse Pad", "Web Internal Media Panel", "Wide Internet Menu Protocol"], answer: 0 },
+      { q: "CLI uses?", options: ["Mouse", "Icons", "Text commands", "Touch screen"], answer: 2 },
+      { q: "File permission allows?", options: ["Internet Access", "Control Read/Write", "Install OS", "Shutdown PC"], answer: 1 },
+      { q: "Backup is used for?", options: ["Changing OS", "Speeding CPU", "Protecting data", "Gaming"], answer: 2 },
+      { q: "Dialog box means?", options: ["Large window", "Pop-up requesting input", "Menu bar", "Driver"], answer: 1 }
+    ];
+
+    const quiz = document.getElementById("quiz");
+
+    questions.forEach((item, i) => {
+      let optionsHTML = "";
+      item.options.forEach((opt, index) => {
+        optionsHTML += `<label><input type='radio' name='q${i}' value='${index}'> ${opt}</label><br>`;
+      });
+
+      quiz.innerHTML += `
+        <div class='question'>
+          <p><b>${i + 1}. ${item.q}</b></p>
+          ${optionsHTML}
+        </div>
+      `;
+    });
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, i) => {
+        const selected = document.querySelector(`input[name='q${i}']:checked`);
+        if (selected && parseInt(selected.value) === q.answer) score++;
+      });
+
+      document.getElementById("result").innerText = `Your Score: ${score} / ${questions.length}`;
+    }
+  </script>
+</body>
+</html>
